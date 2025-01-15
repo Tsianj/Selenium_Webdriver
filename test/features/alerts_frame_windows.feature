@@ -11,6 +11,5 @@ Feature: TP exploration of the alerts, frame and windows
     Scenario: Verify "lorem ipsum" in large modal dialog
         Given I am on the home page
         When I navigate to the "Alerts, Frame & Windows" section
-        And I open the "Modal dialogs" section
-        And I open the large modal dialog
+        And I access the "Modal dialogs" section
         Then I should see "lorem ipsum" 4 times in the large modal dialog

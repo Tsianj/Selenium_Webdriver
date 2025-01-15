@@ -18,16 +18,8 @@ def browser():
     yield driver
     driver.quit()
 
-# @scenario('features/widgets.feature', 'Start progress bar and verify completion')
-# def test_start_progress_bar_and_verify_completion():
-#     pass
-
-# @scenario('features/widgets.feature', 'Navigate to Menu and click on Sub Sub Item 2')
-# def test_navigate_to_menu_and_click_sub_sub_item_2():
-#     pass
-
-@scenario('features/widgets.feature', 'Select various options in the Select Menu')
-def test_select_various_options_in_select_menu():
+@scenario('features/widgets.feature', 'Start progress bar and verify completion')
+def test_start_progress_bar_and_verify_completion():
     pass
 
 @given('I am on the home page')
@@ -52,13 +44,14 @@ def verify_progress_bar_completion(browser):
     assert browser.find_element(By.ID, 'resetButton').is_displayed()
 
 
-@when('I open the "Menu" section')
+@scenario('features/widgets.feature', 'Navigate to Menu and click on Sub Sub Item 2')
+def test_navigate_to_menu_and_click_sub_sub_item_2():
+    pass
+
+@when('I navigate through the menu to select "Sub Sub Item 2"')
 def open_menu_section(browser):
     browser.execute_script("window.scrollTo(0, document.body.scrollHeight);")
     browser.find_element(By.XPATH, '//span[text()="Menu"]').click()
-
-@when('I hover over "Main Item 2" and "Sub Sub List"')
-def hover_over_main_item_2_and_sub_sub_list(browser):
     browser.execute_script("window.scrollTo(0, document.body.scrollHeight);")
     main_item_2 = browser.find_element(By.XPATH, '//a[text()="Main Item 2"]')
     sub_sub_list = browser.find_element(By.XPATH, '//a[text()="SUB SUB LIST »"]')
@@ -68,42 +61,31 @@ def hover_over_main_item_2_and_sub_sub_list(browser):
     time.sleep(2)  # Attendre un peu pour s'assurer que le menu est visible
     actions.move_to_element(sub_sub_list).perform()
     time.sleep(2)  # Attendre un peu pour s'assurer que le sous-menu est visible
-
-@when('I click on "Sub Sub Item 2"')
-def click_on_sub_sub_item_2(browser):
     browser.find_element(By.XPATH, '//a[text()="Sub Sub Item 2"]').click()
 
-@then('I should see "Sub Sub Item 2" is clicked')
+@then('"Sub Sub Item 2" should be displayed as selected')
 def verify_sub_sub_item_2_is_clicked(browser):
     sub_sub_item_2 = browser.find_element(By.XPATH, '//a[text()="Sub Sub Item 2"]')
     assert sub_sub_item_2 is not None  # Vérifier que l'élément est présent dans le DOM
 
 
-@when('I open the "Select Menu" section')
+@scenario('features/widgets.feature', 'Select various options in the Select Menu')
+def test_select_various_options_in_select_menu():
+    pass
+
+@when('I configure the select menus with the required options')
 def open_select_menu_section(browser):
     browser.execute_script("window.scrollTo(0, document.body.scrollHeight);")
     browser.find_element(By.XPATH, '//span[text()="Select Menu"]').click()
-
-@when('I choose "Another root option" for "Select value"')
-def choose_another_root_option(browser):
     browser.find_element(By.XPATH, '//div[text()="Select Option"]').click()
     time.sleep(1)
     browser.find_element(By.XPATH, '//div[text()="Another root option"]').click()
-
-@when('I choose "Other" for "Select one"')
-def choose_other_for_select_one(browser):
     browser.find_element(By.XPATH, '//div[text()="Select Title"]').click()
     time.sleep(1)
     browser.find_element(By.XPATH, '//div[text()="Other"]').click()
-
-@when('I choose "Aqua" for "Old style select menu"')
-def choose_aqua_for_old_style_select_menu(browser):
     select = Select(browser.find_element(By.ID, 'oldSelectMenu'))
     time.sleep(1)
     select.select_by_visible_text('Aqua')
-
-@when('I choose "Red" and "Black" for "Multi select drop down"')
-def choose_red_and_black_for_multi_select(browser):
     browser.execute_script("window.scrollTo(0, document.body.scrollHeight);")
     browser.find_element(By.XPATH, '//div[text()="Select..."]').click()
     time.sleep(1)
@@ -111,7 +93,7 @@ def choose_red_and_black_for_multi_select(browser):
     time.sleep(1)
     browser.find_element(By.XPATH, '//div[text()="Black"]').click()
 
-@then('I should see the selected options')
+@then('I should see the options reflected correctly')
 def verify_selected_options(browser):
     selected_value = browser.find_element(By.XPATH, '//div[text()="Another root option"]')
     selected_one = browser.find_element(By.XPATH, '//div[text()="Other"]')

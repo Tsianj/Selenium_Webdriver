@@ -42,12 +42,9 @@ def open_and_close_new_tab(browser):
 def verify_close_new_tab(browser):
     assert len(browser.window_handles) == 1
 
-@when('I open the "Modal dialogs" section')
+@when('I access the "Modal dialogs" section')
 def open_modal_dialogs_section(browser):
     browser.find_element(By.XPATH, '//span[text()="Modal Dialogs"]').click()
-
-@when('I open the large modal dialog')
-def open_large_modal_dialog(browser):
     browser.find_element(By.ID, 'showLargeModal').click()
 
 @then('I should see "lorem ipsum" 4 times in the large modal dialog')

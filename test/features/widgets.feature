@@ -12,17 +12,11 @@ Feature: TP exploration of the widgets
     Scenario: Navigate to Menu and click on Sub Sub Item 2
         Given I am on the home page
         When I navigate to the "Widgets" section
-        And I open the "Menu" section
-        And I hover over "Main Item 2" and "Sub Sub List"
-        And I click on "Sub Sub Item 2"
-        Then I should see "Sub Sub Item 2" is clicked
+        And I navigate through the menu to select "Sub Sub Item 2"
+        Then "Sub Sub Item 2" should be displayed as selected
       
     Scenario: Select various options in the Select Menu
         Given I am on the home page
         When I navigate to the "Widgets" section
-        And I open the "Select Menu" section
-        And I choose "Another root option" for "Select value"
-        And I choose "Other" for "Select one"
-        And I choose "Aqua" for "Old style select menu"
-        And I choose "Red" and "Black" for "Multi select drop down"
-        Then I should see the selected options
+        And I configure the select menus with the required options
+        Then I should see the options reflected correctly

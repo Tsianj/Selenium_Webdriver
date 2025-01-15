@@ -51,25 +51,19 @@ def verify_check_boxes(browser):
         else:
             assert input_element.is_selected(), f'{label} should be selected'
 
-@when('I go to the "web tables" page')
+@when('I adjust the web table by removing rows and updating a salary')
 def web_tables_page(browser):
     browser.find_element(By.XPATH, '//h5[text()="Elements"]').click()
     browser.find_element(By.XPATH, '//span[text()="Web Tables"]').click()
-
-@when('I delete the last two rows')
-def delete_last_two_rows(browser):
     browser.find_element(By.ID, 'delete-record-2').click()
     browser.find_element(By.ID, 'delete-record-3').click()
-
-@when('I modify the salary of the remaining row to 4300')
-def modify_salary(browser):
     browser.find_element(By.CSS_SELECTOR, '.rt-tr-group .action-buttons span[title="Edit"]').click()
     salary_input = browser.find_element(By.ID, 'salary')
     salary_input.clear()
     salary_input.send_keys('4300')
     browser.find_element(By.ID, 'submit').click()
 
-@then('I verify the salary is updated to 4300')
+@then('the salary of the remaining row should be 4300')
 def verify_salary(browser):
     salary_element = browser.find_element(By.XPATH, "//div[@class='rt-td' and text()='4300']")
     assert salary_element is not None, "The salary was not updated to 4300"

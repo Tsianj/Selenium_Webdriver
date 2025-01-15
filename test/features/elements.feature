@@ -9,7 +9,5 @@ Feature: TP exploration of the elements
 
     Scenario: Modify web tables
         Given I am on the home page
-        When I go to the "web tables" page
-        And I delete the last two rows
-        And I modify the salary of the remaining row to 4300
-        Then I verify the salary is updated to 4300
+        When I adjust the web table by removing rows and updating a salary
+        Then the salary of the remaining row should be 4300
